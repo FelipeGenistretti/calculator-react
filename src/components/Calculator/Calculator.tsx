@@ -2,44 +2,17 @@ import { Button } from "../Button/Button";
 import { CalculatorDisplay } from "../CalculatorDisplay/CalculatorDisplay";
 import { Card } from "../Card/Card";
 import { BUTTONS } from "../../global/button";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useCalculator } from "../../context/CalculatorContext/CalculatorContext";
+import { useHandleCalculator } from "../../hooks/UseHandleCalculator";
 
 export interface CalculatorProps {}
 
 export function Calculator() {
-
-  const [operation, setOperation] = useState("");
-  const [result, setResult] = useState("")
+  const {operation, result, doOperation} = useHandleCalculator()
 
   function handleButtonClick(input: string) {
-  if (input === "=") {
-    try {
-      const sanitized = operation.replace(/,/g, ".").replace(/\s+/g, "");
-      const operationResult = eval(sanitized);
-      setResult(operationResult.toString().replace(/\./, ","));
-    } catch {
-      setResult("Erro");
-    }
-    return;
-  }
-
-  if (input === "C") {
-    setOperation("");
-    setResult("");
-    return;
-  }
-
-  if (input === "CE") {
-    setOperation(prev => prev.slice(0, -1));
-    return;
-  }
-
-  if (input === "," && !operation.endsWith(",")) {
-    setOperation(prev => prev + ",");
-    return;
-  }
-
-  setOperation(prev => prev + input);
+    doOperation(input)
 }
 
 

@@ -37,3 +37,7 @@ export const BUTTONS: ButtonConfig[][] = [
     { input: "=", className: "w-16 h-16 bg-[#7F45E2]" }
   ]
 ];
+
+
+
+

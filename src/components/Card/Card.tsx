@@ -6,7 +6,7 @@ export interface CardProps {
 
 }
 
-export function Card({children, className= "", ...props}:CardProps){
+export function Card({children, className= ""}:CardProps){
     return (
         <div className={`bg-gray-900 shadow-md rounded-2xl ${className}`}>
             {children}

@@ -1,4 +1,4 @@
-import type { ReactNode, ElementType } from "react"
+import type { ReactNode, ElementType, ComponentPropsWithoutRef } from "react"
 
 const textVariants = {
   default: 'text-xl',
@@ -19,12 +19,16 @@ export function Text({
   variants = "default",
   className = "",
   as: Component = "span",
+  ...props
 }: TextProps) {
   
   const textClass = textVariants[variants] ?? textVariants.default
 
   return (
-    <Component className={`${textClass} ${className}`}>
+    <Component
+      {...props}  
+      className={`${textClass} ${className}`}
+    >
       {children}
     </Component>
   )
